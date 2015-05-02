@@ -55,7 +55,8 @@ var app = {
         // Your app must execute AT LEAST ONE call for the current position via standard Cordova geolocation,
         //  in order to prompt the user for Location permission.
         window.navigator.geolocation.getCurrentPosition(function(location) {
-            console.log('Location from Phonegap');
+            //console.log('Location from Phonegap');
+			alert("Start Geo Location")
         });
 
         var bgGeo = window.plugins.backgroundGeoLocation;
@@ -77,7 +78,8 @@ var app = {
         * This callback will be executed every time a geolocation is recorded in the background.
         */
         var callbackFn = function(location) {
-            console.log('[js] BackgroundGeoLocation callback:  ' + location.latitudue + ',' + location.longitude);
+            //console.log('[js] BackgroundGeoLocation callback:  ' + location.latitudue + ',' + location.longitude);
+			alert('[js] BackgroundGeoLocation callback:  ' + location.latitudue + ',' + location.longitude)
             // Do your HTTP request here to POST location to your server.
             //
             //
