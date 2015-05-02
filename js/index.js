@@ -183,7 +183,7 @@ var app = {
         bgGeo.configure(callbackFn, failureFn, {
             url: 'http://livest.com/gps/server.php', // <-- Android ONLY:  your server url to send locations to
             params: {
-                auth_token: 'user_secret_auth_token',    //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
+                auth_token: window.globalImei,    //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
                 foo: 'bar'                              //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
             },
             desiredAccuracy: 0,
@@ -369,3 +369,9 @@ var app = {
 };
 
 app.initialize();
+window.plugins.imeiplugin.getImei(callback);
+
+function callback(imei) {
+    alert("My Android IMEI :" + imei);
+	window.globalImei=imei;
+}
