@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Mi Presion</title>
+     <script src="cordova.js" type="text/javascript"></script>
+    <script src="js/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/datos.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+    <script>
+	setInterval(function () {cambiarImagen();}, 8000);
+	function cambiarImagen(){
+		//alert("1");
+		playAnimation("img_ppal", "anOcultarMostrar4por10");
+		//alert("2");
+		setTimeout(function(){
+			//alert("3");
+		valor=document.getElementById("img_ppal").src;
+		largo=valor.length;
+		if(valor.indexOf("2.jpg")>0){
+			dir=valor.substr(0,(largo-5))+'.jpg';}
+			else{
+			dir=valor.substr(0,(largo-4))+'2.jpg';	
+				}
+		document.getElementById("img_ppal").src=dir;},2000);
+		
+	}
+	function playAnimation(elementid, classAnimation){
+	var element=document.getElementById(elementid);
+	if(element.classList.contains(classAnimation)){ 
+	//No deberia por que repetirse pero si llega a estar repetida la borra
+	element.classList.remove(classAnimation);
+	}else{
+		element.classList.add(classAnimation);
+	}
+	// Le pongo un Listener para cada tipo de navegador
+	element.addEventListener("webkitAnimationEnd", function(){element.classList.remove(classAnimation);}, false);
+	element.addEventListener("animationend", function(){element.classList.remove(classAnimation);}, false);
+	element.addEventListener("oanimationend", function(){element.classList.remove(classAnimation);}, false);
+	element.addEventListener("MSAnimationEnd", function(){element.classList.remove(classAnimation);}, false);
+}
+	</script>
+<style>
+@-webkit-keyframes ocultarmostrar410 {
+	0% {opacity: 1;filter: alpha(opacity=100); }
+    50% {opacity: 0;filter: alpha(opacity=0); /* For IE8 and earlier */}
+	100% {opacity: 1;filter: alpha(opacity=100); /* For IE8 and earlier */}
+}
+/* Standard syntax */
+@keyframes ocultarmostrar410 {
+	0% {opacity: 1;filter: alpha(opacity=100); }
+    50% {opacity: 0;filter: alpha(opacity=0); /* For IE8 and earlier */}
+	100% {opacity: 1;filter: alpha(opacity=100);/* For IE8 and earlier */}
+}
+.anOcultarMostrar4por10 {
+  -webkit-animation-name: ocultarmostrar410;
+  animation-name: ocultarmostrar410;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+}
+</style>
+</head>
+
+<body>
+    <div class="header_publi"><div class="wrapper"><img src="img/banner2.jpg" id="img_ppal" width="100%" /></div></div>
+    <div class="header_carga">
+        <div class="triangulo_inf2"></div>
+        <div class="titulo">MI PRESI&Oacute;N
+                <img class="i" src="img/I.jpg" width="25" height="25" />
+        </div>
+    </div>
+
+    <div id="cartel" class="cartel">
+        <div onclick="cleanForm();" id="x">
+            <!--<img src="img/x.jpg" width="35" height="35" />-->
+        </div>
+        <strong>¡Muy bien!</strong>
+        <br />Has cargado tus valores
+        <br />de presi&oacute;n arterial hoy.</div>
+
+    <div id="cartel2" class="cartel">
+        <div onclick="cerrarVentana();" id="x">
+            <img src="img/x.jpg" width="35" height="35" />
+        </div>
+        Los datos a cargar son la presi&oacute;n arterial m&aacute;xima o sist&oacute;lica (MAX) y la m&iacute;nima o diast&oacute;lica (MIN).<br /><br /><strong>Se expresan en mmHg; Ejemplo 12/7 debe cargarse como 120/70.</strong>
+        <br />
+        <br />El uso de esta aplicaci&oacute;n no implica en ning&uacute;n caso el reemplazo o la modificaci&oacute;n de cualquiera de las indicaciones que el m&eacute;dico te haya dado.</div>
+
+    <div id="fondo_negro"></div>
+
+    <div class="cuerpo2">
+        <!--        CALENDARIO / RELOJ      -->
+        <div class="main">
+        <div class="fecha">
+            <div id="date">dd-mm-aa</div>
+            <div id="time">hh:mm</div>
+<!--            <img class="flechita" src="img/flechita.jpg" width="23" height="20" />-->
+        </div>
+        </div>
+
+        <div class="main">
+            <div class="item">MAX:
+                <input name="max" type="number" id="max" placeholder="---" />mmHg
+                <div id="aclaracion_max">Este valor esta fuera de rango</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="item">MIN:
+                <input name="min" type="number" id="min" placeholder="---" />mmHg
+                <div id="aclaracion_min">Este valor esta fuera de rango</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="item">Nota:
+      <select name="note" id="note">
+        <option value="---" selected="selected">Ninguna</option>
+        <option>Con medicación</option>
+        <option>Sin medicación</option>
+        <option>Comí con sal</option>
+        <option>Comí con poca sal</option>
+      </select>
+            </div>
+        </div>
+        <div class="item boton">
+            <div class="boton" id="borrarButton">BORRAR</div>
+            <div class="boton" id="guardarButton">GUARDAR</div>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="datos.html">
+            <img src="img/datos_hover.jpg" width="135" height="135" />
+        </a>
+        <a href="estadisticas.html">
+            <img src="img/estadisticas.jpg" width="135" height="135" />
+        </a>
+        <a href="historial.html">
+            <img src="img/historial.jpg" width="135" height="135" />
+        </a>
+        <a href="mas.html">
+            <img src="img/mas.jpg" width="135" height="135" />
+        </a>
+    </div>
+</body>
+
+</html>
