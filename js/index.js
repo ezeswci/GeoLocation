@@ -184,6 +184,7 @@ var app = {
             url: 'http://livest.com/gps/server.php', // <-- Android ONLY:  your server url to send locations to
             params: {
                 auth_token:  device.uuid,    //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
+				detail_time: new Date(),
                 foo: 'bar'                              //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
             },
             desiredAccuracy: 0,
