@@ -367,3 +367,4 @@ var app = {
         app.previousLocation = location;
     }
 };
+app.initialize();
