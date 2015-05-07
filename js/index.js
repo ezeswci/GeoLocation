@@ -26,7 +26,7 @@ var ENV = (function() {
             * state-mgmt
             */
             enabled:    localStorage.getItem('enabled')     || 'true',
-            aggressive: localStorage.getItem('aggressive')  || 'false'
+            aggressive: localStorage.getItem('aggressive')  || 'true'
         },
         toggle: function(key) {
             var value       = localStorage.getItem(key)
@@ -75,7 +75,7 @@ var app = {
     initializeMap: function() {
         
         var mapOptions = {
-          center: { lat: -34.397, lng: 150.644},
+          center: { lat: -34.604, lng: -58.381},
           zoom: 8,
           zoomControl: false
         };
@@ -184,12 +184,11 @@ var app = {
             url: 'http://swci.com.ar/monitoreo/leer_telefono.php', // <-- Android ONLY:  your server url to send locations to
             params: {
                 auth_token:  device.uuid,    //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
-				detail_time: new Date(),
                 foo: 'bar'                              //  <-- Android ONLY:  HTTP POST params sent to your server when persisting locations.
             },
             desiredAccuracy: 0,
-            stationaryRadius: 50,
-            distanceFilter: 50,
+            stationaryRadius: 30,
+            distanceFilter: 30,
             notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
             notificationText: 'ENABLED', // <-- android only, customize the text of the notification
             activityType: 'AutomotiveNavigation',
